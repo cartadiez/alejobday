@@ -2,65 +2,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>💌 Carta Secreta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta Secreta 💌</title>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #fce4ec;
+      font-family: Arial, sans-serif;
+      background: #fce4ec;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .screen {
       display: none;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      animation: fadeIn 1.2s ease;
     }
 
     .active {
       display: flex;
     }
 
-    .password-screen {
-      flex-direction: column;
+    h2 {
+      margin-bottom: 15px;
     }
 
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 60px);
       gap: 10px;
-      margin-top: 20px;
-      justify-content: center;
     }
 
     .key {
-      background-color: #f8bbd0;
-      border: none;
-      border-radius: 12px;
       font-size: 20px;
       padding: 15px;
+      border-radius: 12px;
+      border: none;
       cursor: pointer;
     }
 
-    .input-display {
-      font-size: 24px;
-      margin-top: 20px;
+    .display {
+      margin-bottom: 15px;
+      font-size: 22px;
       letter-spacing: 8px;
     }
 
-    .notepad {
-      background-color: #fff0f6;
+    .note {
+      background: #fff6f6;
       border: 3px solid #f8bbd0;
       padding: 25px;
       border-radius: 20px;
-      width: 90%;
       max-width: 500px;
-      font-family: 'Comic Sans MS', cursive;
-      animation: fadeIn 1.5s ease;
       text-align: left;
+      font-family: "Comic Sans MS", cursive;
+      animation: fadeIn 1.5s ease;
     }
 
     @keyframes fadeIn {
@@ -72,90 +72,91 @@
 
 <body>
 
-<audio id="musica" loop>
-  <source src="Mac DeMarco __ _Freaking Out The Neighborhood_.mp3" type="audio/mpeg">
-</audio>
+  <!-- AUDIO -->
+  <audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
-<div id="passwordScreen" class="screen password-screen active">
-  <h2>🔒 Ingresa la contraseña</h2>
-  <div class="input-display" id="inputDisplay">••••</div>
+  <!-- PANTALLA CONTRASEÑA -->
+  <div id="passwordScreen" class="screen active">
+    <h2>🔒 Ingresa la contraseña</h2>
+    <div id="display" class="display">••••</div>
 
-  <div class="keypad">
-    <button class="key" onclick="enterDigit('1')">1</button>
-    <button class="key" onclick="enterDigit('2')">2</button>
-    <button class="key" onclick="enterDigit('3')">3</button>
-    <button class="key" onclick="enterDigit('4')">4</button>
-    <button class="key" onclick="enterDigit('5')">5</button>
-    <button class="key" onclick="enterDigit('6')">6</button>
-    <button class="key" onclick="enterDigit('7')">7</button>
-    <button class="key" onclick="enterDigit('8')">8</button>
-    <button class="key" onclick="enterDigit('9')">9</button>
-    <div></div>
-    <button class="key" onclick="enterDigit('0')">0</button>
-    <div></div>
+    <div class="keypad">
+      <button class="key" onclick="press('1')">1</button>
+      <button class="key" onclick="press('2')">2</button>
+      <button class="key" onclick="press('3')">3</button>
+      <button class="key" onclick="press('4')">4</button>
+      <button class="key" onclick="press('5')">5</button>
+      <button class="key" onclick="press('6')">6</button>
+      <button class="key" onclick="press('7')">7</button>
+      <button class="key" onclick="press('8')">8</button>
+      <button class="key" onclick="press('9')">9</button>
+      <button class="key" onclick="press('0')">0</button>
+      <button class="key" onclick="clearCode()">⌫</button>
+    </div>
   </div>
-</div>
 
-<div id="notepadScreen" class="screen">
-  <div class="notepad">
-    <h3>📅 24 de junio de 2025</h3>
-    <h4>💌 Feliz cumpleaños</h4>
-
-    <p>
-      Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
-      durante estos poquitos meses que hemos compartido, he aprendido a darme cuenta de
-      la persona genial que eres.
-    </p>
-
-    <p>
-      Siento que hemos pasado umbrales muy chéveres, y realmente me veo compartiendo contigo
-      en un futuro 😉.
-    </p>
-
-    <p>
-      Quiero que sepas que eres una persona muy, muy fácil de querer,
-      y te deseo que a donde sea que vayas, nunca te falte amor.
-    </p>
-
-    <p>
-      Feliz cumpleaños gatico naranjado 🐈🧡  
-      Que todos los deseos que tengas se te cumplan.
-    </p>
+  <!-- CARTA -->
+  <div id="letterScreen" class="screen">
+    <div class="note">
+      <h3>🎂 Feliz cumpleaños</h3>
+      <p>
+        Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
+        durante estos poquitos meses que hemos compartido, he aprendido a darme cuenta
+        de la persona genial que eres.
+      </p>
+      <p>
+        Siento que hemos pasado umbrales muy chéveres, y realmente me veo compartiendo
+        contigo en un futuro 😉.
+      </p>
+      <p>
+        Quiero que sepas que eres una persona muy, muy fácil de querer, y te deseo que
+        a donde sea que vayas, nunca te falte amor.
+      </p>
+      <p>
+        💛 Feliz cumpleaños gatico naranjado 🐈🧡<br>
+        Que todos los deseos que tengas se te cumplan.
+      </p>
+    </div>
   </div>
-</div>
 
-<script>
-  const correctPassword = "0202";
-  let input = "";
+  <script>
+    const correctCode = "0202";
+    let input = "";
 
-  document.addEventListener("click", iniciarMusica, { once: true });
-  document.addEventListener("touchstart", iniciarMusica, { once: true });
+    function press(num) {
+      if (input.length >= 4) return;
+      input += num;
+      updateDisplay();
 
-  function iniciarMusica() {
-    const musica = document.getElementById("musica");
-    musica.volume = 0.6;
-    musica.play().catch(() => {});
-  }
-
-  function enterDigit(digit) {
-    if (input.length < 4) input += digit;
-
-    const display = document.getElementById("inputDisplay");
-    display.textContent = input.padEnd(4, "•");
-
-    if (input.length === 4) {
-      if (input === correctPassword) {
-        document.getElementById("passwordScreen").classList.remove("active");
-        document.getElementById("notepadScreen").classList.add("active");
-      } else {
-        alert("Contraseña incorrecta 💔");
-        input = "";
-        display.textContent = "••••";
+      if (input.length === 4) {
+        if (input === correctCode) {
+          unlock();
+        } else {
+          setTimeout(clearCode, 600);
+        }
       }
     }
-  }
-</script>
+
+    function updateDisplay() {
+      document.getElementById("display").textContent = "•".repeat(input.length);
+    }
+
+    function clearCode() {
+      input = "";
+      updateDisplay();
+    }
+
+    function unlock() {
+      document.getElementById("passwordScreen").classList.remove("active");
+      document.getElementById("letterScreen").classList.add("active");
+
+      // reproducir música (permitido tras interacción)
+      const audio = document.getElementById("music");
+      audio.play().catch(() => {});
+    }
+  </script>
 
 </body>
 </html>
-
