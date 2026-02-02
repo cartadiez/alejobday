@@ -1,186 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carta Secreta by myeya</title>
+<cabeza>
+  <meta conjunto de caracteres=„UTF-8" />
+  <meta nombre="ventana gráfica" contenido="ancho=ancho del dispositivo, escala inicial=1.0"/>
+  <título>Carta Secreta 💌</título>
 
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fce4ec;
+  <estilo>
+    cuerpo {
+      familia de fuentes: Arial, sans-serif;
+      margen: 0;
+      color de fondo: #fce4ec;
     }
 
-    .screen {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
+    .pantalla {
+      visualizar: ninguno;
+      justificar-contenido: centro;
+      align-items: centro;
+      altura: 100vh;
+      alineación de texto: centro;
     }
 
-    .active {
-      display: flex;
+    .activo {
+      visualizar: flex;
     }
 
-    .password-screen {
-      flex-direction: column;
+    .pantalla de contraseña {
+      flex-direction: columna;
     }
 
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 60px);
-      gap: 10px;
+    .teclado {
+      visualizar: rejilla;
+      columnas de plantilla de cuadrícula: repetir(3, 60px);
+      brecha: 10px;
       margin-top: 20px;
-      justify-content: center;
+      justificar-contenido: centro;
     }
 
-    .key {
-      background-color: #f8bbd0;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .key:hover {
-      background-color: #f48fb1;
+    .clave {
+      color de fondo: #f8bbd0;
+      frontera: ninguno;
+      radio fronterizo: 12px;
+      tamaño de fuente: 20px;
+      acolchado: 15px;
+      cursor: puntero;
     }
 
     .input-display {
-      font-size: 24px;
+      tamaño de fuente: 24px;
       margin-top: 20px;
-      letter-spacing: 8px;
+      espaciado entre letras: 8px;
     }
 
-    /* Animación */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .bloc de notas {
+      color de fondo: #fff0f6;
+      frontera: 3px sólido #f8bbd0;
+      acolchado: 25px;
+      radio fronterizo: 20px;
+      ancho: 90%;
+      ancho máximo: 500px;
+      familia de fuentes: 'Cómic sin esclerosis múltiple', cursiva;
+      animación: fadeIn 1.5s ease;
     }
 
-    .notepad {
-      background-color: #fff0f6;
-      border: 3px solid #f8bbd0;
-      padding: 20px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 500px;
-      text-align: left;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      line-height: 1.6;
-      animation: fadeUp 1.2s ease;
-    }
-
-    .music {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    iframe {
-      display: none; /* oculto, solo para audio */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
+
 <body>
 
-<!-- Pantalla contraseña -->
+<!-- 🎵 Música -->
+<audio id="musica" loop>
+  <source src="freaking-out-the-neighborhood.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🔒 Pantalla contraseña -->
 <div id="passwordScreen" class="screen password-screen active">
-  <h2>🔒 Enter password</h2>
+  <h2>🔒 Ingresa la contraseña</h2>
   <div class="input-display" id="inputDisplay">••••</div>
 
   <div class="keypad">
     <button class="key" onclick="enterDigit('1')">1</button>
     <button class="key" onclick="enterDigit('2')">2</button>
     <button class="key" onclick="enterDigit('3')">3</button>
-    <button class="key" onclick="enterDigit('4')">4</button>
-    <button class="key" onclick="enterDigit('5')">5</button>
-    <button class="key" onclick="enterDigit('6')">6</button>
-    <button class="key" onclick="enterDigit('7')">7</button>
-    <button class="key" onclick="enterDigit('8')">8</button>
-    <button class="key" onclick="enterDigit('9')">9</button>
+    <botón clase="clave" onclick="enterDigit('4')">4</botón>
+    <botón clase="clave" onclick="enterDigit('5')">5</botón>
+    <botón clase="clave" onclick="enterDigit('6')">6</botón>
+    <botón clase="clave" onclick="enterDigit('7')">7</botón>
+    <botón clase="clave" onclick="enterDigit('8')">8</botón>
+    <botón clase="clave" onclick="enterDigit('9')">9</botón>
     <div></div>
-    <button class="key" onclick="enterDigit('0')">0</button>
+    <botón clase="clave" onclick="enterDigit('0')">0</botón>
     <div></div>
   </div>
 </div>
 
-<!-- Pantalla carta -->
-<div id="notepadScreen" class="screen">
-  <div class="notepad">
-    <h3>📅 24 Junio 2025</h3>
-    <h4>💌 Mi querido gatico naranjado</h4>
-
-    <!-- Música -->
-    <div class="music">
-      <p>🎵 Freaking Out the Neighborhood</p>
-      <iframe
-        id="musicPlayer"
-        src="https://www.youtube.com/embed/RlKMyTt6rZ8?enablejsapi=1"
-        allow="autoplay; encrypted-media">
-      </iframe>
-    </div>
+<!-- 💌 Carta -->
+<div id="pantalla del bloc de notas" clase="pantalla">
+  <div clase="bloc de notas">
+    <h3>📅 24 de junio de 2025</h3>
+    <h4>💌 Feliz cumpleaños</h4>
 
     <p>
-      Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
-      durante estos poquitos meses que hemos compartido, he aprendido a darme cuenta de la
-      persona genial que eres.
+ Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
+ durante estos poquitos meses que hemos compartido, él aprendido a darme cuenta de
+ la persona genial que eres.
     </p>
 
     <p>
-      Siento que hemos pasado umbrales muy chéveres, y realmente me veo compartiendo contigo
-      en un futuro ;).
+ Siento que hemos pasado umbrales muy chéveres, y realmente me veo comparado contigo
+ en un futuro 😉.
     </p>
 
     <p>
-      Quiero que sepas que eres una persona muy, muy fácil de querer, y te deseo que a donde
-      sea que vayas, nunca te falte amor.
+ Quiero que sepas que eres una persona muy, muy fácil de querer,
+ y te deseo que a donde sea que vayas, nunca te falte amor.
     </p>
 
     <p>
-      Feliz cumpleaños gatico naranjado, que todos los deseos que tengas se te cumplan. 🎂🧡
+ Feliz cumplidos gatico naranjado 🐈🧡 
+ Que todos los deseos que tienen se te cumplan.
     </p>
   </div>
 </div>
 
 <script>
-  const correctPassword = '0202';
-  let input = '';
+  const contraseña correcta = „0202";
+  dejar entrada = "";
+  dejar músicaIniciada = falso;
 
-  function enterDigit(digit) {
-    if (input.length < 4) {
-      input += digit;
+  // 🎵 musical inicial al primer toque (requisito iPhone)
+  documento.addEventListener("inicio táctil", inicioMusica, { una vez: verdederadero });
+  documento.addEventListener("clic", inicioMusica, { una vez: verdederadero });
+
+  función inicioMusica() {
+    const musica = documento.getElementById("música");
+    musica.volumen = 0,6;
+    musica.jugar().atrapar(() => {});
+  }
+
+  función enterDigit(dígito) {
+    si (entrada.longitud < 4) {
+      entrada += dígito;
     }
 
-    const display = document.getElementById('inputDisplay');
-    display.textContent = input.padEnd(4, '•');
+    const visualizar = documento.getElementById("pantalla de entrada");
+    visualizar.contenido de texto = entrada.padEnd(4, "•");
 
-    if (input.length === 4) {
-      if (input === correctPassword) {
-        document.getElementById('passwordScreen').classList.remove('active');
-        document.getElementById('notepadScreen').classList.add('active');
-
-        // Reproducir música automáticamente
-        const iframe = document.getElementById('musicPlayer');
-        iframe.src += "&autoplay=1";
+    si (entrada.longitud === 4) {
+      si (entrada === contraseña correcta) {
+        documento.getElementById("pantalla de contraseña").lista de clases.eliminatorio("activo");
+        documento.getElementById("pantalla del bloque de notas").lista de clases.agregar("activo");
       } else {
-        alert('Contraseña incorrecta, intenta de nuevo');
-        input = '';
-        display.textContent = '••••';
+        alerta("Contraseña incorrecta 💔");
+        entrada = "";
+        visualizar.contenido de texto = "••••";
       }
     }
   }
 </script>
 
-</body>
+</cuervo>
 </html>
