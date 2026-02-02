@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
-<cabeza>
-  <meta conjunto de caracteres=„UTF-8" />
-  <meta nombre="ventana gráfica" contenido="ancho=ancho del dispositivo, escala inicial=1.0"/>
-  <título>Carta Secreta 💌</título>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta Secreta 💌</title>
 
-  <estilo>
-    cuerpo {
-      familia de fuentes: Arial, sans-serif;
-      margen: 0;
-      color de fondo: #fce4ec;
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fce4ec;
     }
 
-    .pantalla {
-      visualizar: ninguno;
-      justificar-contenido: centro;
-      align-items: centro;
-      altura: 100vh;
-      alineación de texto: centro;
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
     }
 
-    .activo {
-      visualizar: flex;
+    .active {
+      display: flex;
     }
 
-    .pantalla de contraseña {
-      flex-direction: columna;
+    .password-screen {
+      flex-direction: column;
     }
 
-    .teclado {
-      visualizar: rejilla;
-      columnas de plantilla de cuadrícula: repetir(3, 60px);
-      brecha: 10px;
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
       margin-top: 20px;
-      justificar-contenido: centro;
+      justify-content: center;
     }
 
-    .clave {
-      color de fondo: #f8bbd0;
-      frontera: ninguno;
-      radio fronterizo: 12px;
-      tamaño de fuente: 20px;
-      acolchado: 15px;
-      cursor: puntero;
+    .key {
+      background-color: #f8bbd0;
+      border: none;
+      border-radius: 12px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
     }
 
     .input-display {
-      tamaño de fuente: 24px;
+      font-size: 24px;
       margin-top: 20px;
-      espaciado entre letras: 8px;
+      letter-spacing: 8px;
     }
 
-    .bloc de notas {
-      color de fondo: #fff0f6;
-      frontera: 3px sólido #f8bbd0;
-      acolchado: 25px;
-      radio fronterizo: 20px;
-      ancho: 90%;
-      ancho máximo: 500px;
-      familia de fuentes: 'Cómic sin esclerosis múltiple', cursiva;
-      animación: fadeIn 1.5s ease;
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #f8bbd0;
+      padding: 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      font-family: 'Comic Sans MS', cursive;
+      animation: fadeIn 1.5s ease;
+      text-align: left;
     }
 
     @keyframes fadeIn {
@@ -71,12 +72,10 @@
 
 <body>
 
-<!-- 🎵 Música -->
 <audio id="musica" loop>
   <source src="freaking-out-the-neighborhood.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🔒 Pantalla contraseña -->
 <div id="passwordScreen" class="screen password-screen active">
   <h2>🔒 Ingresa la contraseña</h2>
   <div class="input-display" id="inputDisplay">••••</div>
@@ -85,82 +84,77 @@
     <button class="key" onclick="enterDigit('1')">1</button>
     <button class="key" onclick="enterDigit('2')">2</button>
     <button class="key" onclick="enterDigit('3')">3</button>
-    <botón clase="clave" onclick="enterDigit('4')">4</botón>
-    <botón clase="clave" onclick="enterDigit('5')">5</botón>
-    <botón clase="clave" onclick="enterDigit('6')">6</botón>
-    <botón clase="clave" onclick="enterDigit('7')">7</botón>
-    <botón clase="clave" onclick="enterDigit('8')">8</botón>
-    <botón clase="clave" onclick="enterDigit('9')">9</botón>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
     <div></div>
-    <botón clase="clave" onclick="enterDigit('0')">0</botón>
+    <button class="key" onclick="enterDigit('0')">0</button>
     <div></div>
   </div>
 </div>
 
-<!-- 💌 Carta -->
-<div id="pantalla del bloc de notas" clase="pantalla">
-  <div clase="bloc de notas">
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
     <h3>📅 24 de junio de 2025</h3>
     <h4>💌 Feliz cumpleaños</h4>
 
     <p>
- Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
- durante estos poquitos meses que hemos compartido, él aprendido a darme cuenta de
- la persona genial que eres.
+      Sé que tenemos una relación bastante nueva que apareció de la nada, sin embargo,
+      durante estos poquitos meses que hemos compartido, he aprendido a darme cuenta de
+      la persona genial que eres.
     </p>
 
     <p>
- Siento que hemos pasado umbrales muy chéveres, y realmente me veo comparado contigo
- en un futuro 😉.
+      Siento que hemos pasado umbrales muy chéveres, y realmente me veo compartiendo contigo
+      en un futuro 😉.
     </p>
 
     <p>
- Quiero que sepas que eres una persona muy, muy fácil de querer,
- y te deseo que a donde sea que vayas, nunca te falte amor.
+      Quiero que sepas que eres una persona muy, muy fácil de querer,
+      y te deseo que a donde sea que vayas, nunca te falte amor.
     </p>
 
     <p>
- Feliz cumplidos gatico naranjado 🐈🧡 
- Que todos los deseos que tienen se te cumplan.
+      Feliz cumpleaños gatico naranjado 🐈🧡  
+      Que todos los deseos que tengas se te cumplan.
     </p>
   </div>
 </div>
 
 <script>
-  const contraseña correcta = „0202";
-  dejar entrada = "";
-  dejar músicaIniciada = falso;
+  const correctPassword = "0202";
+  let input = "";
 
-  // 🎵 musical inicial al primer toque (requisito iPhone)
-  documento.addEventListener("inicio táctil", inicioMusica, { una vez: verdederadero });
-  documento.addEventListener("clic", inicioMusica, { una vez: verdederadero });
+  document.addEventListener("click", iniciarMusica, { once: true });
+  document.addEventListener("touchstart", iniciarMusica, { once: true });
 
-  función inicioMusica() {
-    const musica = documento.getElementById("música");
-    musica.volumen = 0,6;
-    musica.jugar().atrapar(() => {});
+  function iniciarMusica() {
+    const musica = document.getElementById("musica");
+    musica.volume = 0.6;
+    musica.play().catch(() => {});
   }
 
-  función enterDigit(dígito) {
-    si (entrada.longitud < 4) {
-      entrada += dígito;
-    }
+  function enterDigit(digit) {
+    if (input.length < 4) input += digit;
 
-    const visualizar = documento.getElementById("pantalla de entrada");
-    visualizar.contenido de texto = entrada.padEnd(4, "•");
+    const display = document.getElementById("inputDisplay");
+    display.textContent = input.padEnd(4, "•");
 
-    si (entrada.longitud === 4) {
-      si (entrada === contraseña correcta) {
-        documento.getElementById("pantalla de contraseña").lista de clases.eliminatorio("activo");
-        documento.getElementById("pantalla del bloque de notas").lista de clases.agregar("activo");
+    if (input.length === 4) {
+      if (input === correctPassword) {
+        document.getElementById("passwordScreen").classList.remove("active");
+        document.getElementById("notepadScreen").classList.add("active");
       } else {
-        alerta("Contraseña incorrecta 💔");
-        entrada = "";
-        visualizar.contenido de texto = "••••";
+        alert("Contraseña incorrecta 💔");
+        input = "";
+        display.textContent = "••••";
       }
     }
   }
 </script>
 
-</cuervo>
+</body>
 </html>
